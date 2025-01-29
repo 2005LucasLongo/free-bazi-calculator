@@ -35,6 +35,8 @@ And remember: yang signs have their elements on the yang side. Yin signs have th
 
 🐖 Pig: Yin
 
+So, a Wood Dragon is Dragon of Yang Wood or 甲辰 ("jia chen").
+
 
 Happy chinese new year of 2025!
 
