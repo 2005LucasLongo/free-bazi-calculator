@@ -1,5 +1,5 @@
 import datetime
-from lunarcalendar import Converter, Solar, Lunar, DateNotExist
+from lunarcalendar import Converter, Solar
 
 # variables
 ZODIAC = [
@@ -136,7 +136,6 @@ def getHourElementIndex(hour_zodiac, day_element):
     
     HOUR_ELEMENT_INDEX_LIST = [
         # Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, Pig
-        
         [0,1,2,3,4,5,6,7,8,9,0,1], # madeira yang
         [2,3,4,5,6,7,8,9,0,1,2,3], # maderia yin
         [4,5,6,7,8,9,0,1,2,3,4,5], # fogo yang
@@ -404,8 +403,12 @@ def getHourElementIndex(hour_zodiac, day_element):
 year = int(input("Enter a year: "))
 month = int(input("Enter a month: "))
 day = int(input("Enter a day: "))
-hour = int(input("Enter a hour: "))
-daylight_saving_time = input("There was DST when you were born? (y/n): ")
+option = input("Show hour pillar? (y/n): ").lower().strip()
+if option == 'y':
+    hour = int(input("Enter a hour: "))
+    daylight_saving_time = input("There was DST when you were born? (y/n): ").lower().strip()
+    hour_zodiac = getHourZodiac(hour, daylight_saving_time)
+    hour_element = ELEMENTS[getHourElementIndex(hour_zodiac, ELEMENTS[getDayElementIndex(year, month, day)])]
 
 birthday = Solar(year,month,day)
 birthday_in_lunar = Converter.Solar2Lunar(birthday)
@@ -413,15 +416,16 @@ birthday_in_lunar = Converter.Solar2Lunar(birthday)
 year_zodiac = getYearZodiac(year)
 month_zodiac = ZODIAC[birthday_in_lunar.month - 1]
 day_zodiac = getDayZodiac(year, month, day)
-hour_zodiac = getHourZodiac(hour, daylight_saving_time)
 
 year_element = ELEMENTS[getYearElementIndex(birthday_in_lunar.year)]
 month_element = ELEMENTS[getMonthElementIndex(birthday_in_lunar.year, birthday_in_lunar.month)]
 day_element = ELEMENTS[getDayElementIndex(year, month, day)]
-hour_element = ELEMENTS[getHourElementIndex(hour_zodiac, day_element)]
 
-# final result
-# print the elements on the top row
-print(hour_element, day_element, month_element, year_element)
-# print the zodiacs on the bottom row
-print(hour_zodiac, day_zodiac, month_zodiac, year_zodiac)
+if option == 'y':
+    print('                  H  D  M  Y')
+    print('Heavenly Stem    ', hour_element, day_element, month_element, year_element)
+    print('Earthly Branches ', hour_zodiac, day_zodiac, month_zodiac, year_zodiac)
+else:
+    print('                  D  M  Y')
+    print('Heavenly Stem    ', day_element, month_element, year_element)
+    print('Earthly Branches ', day_zodiac, month_zodiac, year_zodiac)
