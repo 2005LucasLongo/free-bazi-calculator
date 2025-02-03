@@ -951,5 +951,7 @@ if option == 'y':
     print(f'Hurting officer 伤官 (Shang Guan): {hurting_officer[0]} {hurting_officer[1]}%')
     print(f'Direct wealth 正财 (Zheng Cai): {direct_wealth[0]} {direct_wealth[1]}%')
     print(f'Indirect wealth 偏财 (Pian Cai): {indirect_wealth[0]} {indirect_wealth[1]}%')
+    
+    print('Thanks for using our little script!')
 else:
     print('Thanks for using our little script!')
