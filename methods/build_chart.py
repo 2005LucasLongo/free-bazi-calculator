@@ -1,5 +1,7 @@
-import datetime
-from lunarcalendar import Converter
+# from lunarcalendar import Converter
+import lunardate as ld
+import datetime as dt
+from datetime import timedelta
 
 # variables
 ZODIAC = [
@@ -203,19 +205,51 @@ MONTH_HEAVENLY_STEM_ACCORDING_TO_YEAR_HEAVENLY_STEM = [
     ]
 ]
 
-def get_year_earthly_branch(solar_birthdate):
+'''def get_year_earthly_branch(solar_birthdate):
     lunar_birthdate = Converter.Solar2Lunar(solar_birthdate)
     while lunar_birthdate.year < 2010: # 2010 is the year of Metal Tiger
         lunar_birthdate.year += 12
     while lunar_birthdate.year > 2021: # 2021 is the year of Metal Ox
         lunar_birthdate.year -= 12
-    return ZODIAC[lunar_birthdate.year-2010]
+    return ZODIAC[lunar_birthdate.year-2010]'''
 
-def get_month_earthly_branch(solar_birthdate):
+def get_year_earthly_branch(solar_year, solar_month, solar_day):
+  fixed_date = ld.LunarDate.fromSolarDate(1900,1,31)
+  solar_new_date = [solar_year, solar_month, solar_day] # solar
+  fixed_date_dtformat = dt.date(fixed_date.year, fixed_date.month, fixed_date.day)
+
+  if (solar_new_date[0] == 1900 and solar_new_date[1] == 1 and solar_new_date[2] < 31) or (solar_new_date[0] < 1900):
+    day_diff = ld.LunarDate.fromSolarDate(solar_new_date[0],solar_new_date[1],solar_new_date[2]).day - 1
+    lunar_new_date = fixed_date_dtformat + timedelta(day_diff)
+  else:
+    lunar_new_date = ld.LunarDate.fromSolarDate(solar_new_date[0], solar_new_date[1], solar_new_date[2])
+
+  lunar_year = lunar_new_date.year
+  
+  while lunar_year < 2010: # 2010 is the year of Metal Tiger
+    lunar_year += 12
+  while lunar_year > 2021: # 2021 is the year of Metal Ox
+    lunar_year -= 12
+  return ZODIAC[lunar_year-2010]
+
+'''def get_month_earthly_branch(solar_birthdate):
     lunar_birthdate = Converter.Solar2Lunar(solar_birthdate)
-    return ZODIAC[lunar_birthdate.month-1]
+    return ZODIAC[lunar_birthdate.month-1]'''
 
-def get_day_earthly_branch(solar_birthdate):
+def get_month_earthly_branch(solar_year, solar_month, solar_day):
+  fixed_date = ld.LunarDate.fromSolarDate(1900,1,31)
+  solar_new_date = [solar_year, solar_month, solar_day] # solar
+  fixed_date_dtformat = dt.date(fixed_date.year, fixed_date.month, fixed_date.day)
+
+  if (solar_new_date[0] == 1900 and solar_new_date[1] == 1 and solar_new_date[2] < 31) or (solar_new_date[0] < 1900):
+    day_diff = ld.LunarDate.fromSolarDate(solar_new_date[0],solar_new_date[1],solar_new_date[2]).day - 1
+    lunar_new_date = fixed_date_dtformat + timedelta(day_diff)
+  else:
+    lunar_new_date = ld.LunarDate.fromSolarDate(solar_new_date[0], solar_new_date[1], solar_new_date[2])
+  
+  return ZODIAC[lunar_new_date.month - 1]
+
+'''def get_day_earthly_branch(solar_birthdate):
     base_date = datetime.date(1900, 1, 31)
     current_date = datetime.date(solar_birthdate.year, solar_birthdate.month, solar_birthdate.day)
     delta_days = (current_date - base_date).days
@@ -225,6 +259,25 @@ def get_day_earthly_branch(solar_birthdate):
     if index == 13:
         index = 1
     return ZODIAC[index]
+'''
+
+def get_day_earthly_branch(solar_year, solar_month, solar_day):
+    fixed_date = dt.date(2005,11,15) # rabbit day
+    new_date = dt.date(solar_year,solar_month,solar_day)
+    difference_in_days = (new_date - fixed_date).days
+
+    i = 1 + difference_in_days
+
+    if i < 0:
+        while i < 12:
+            i += 12
+        i -= 12
+    if i > 11:
+        while i > 11:
+            i -= 12
+        i -= 12
+    
+    return ZODIAC[i]
 
 def get_hour_earthly_branch(hour, dst=False):
     if dst == True:
@@ -256,16 +309,30 @@ def get_hour_earthly_branch(hour, dst=False):
     else:
         return ZODIAC[9] # Pig
 
-def get_year_heavenly_stem(solar_birthdate):
+'''def get_year_heavenly_stem(solar_birthdate):
     lunar_birthdate = Converter.Solar2Lunar(solar_birthdate)
     while lunar_birthdate.year < 2010: # 2010 is the year of Metal Tiger
         lunar_birthdate.year += 10
     while lunar_birthdate.year > 2019: # 2019 is the year of Fire Pig
         lunar_birthdate.year -= 10
     year_string_arrayed = str(lunar_birthdate.year).strip('')
-    return ELEMENTS[(int(year_string_arrayed[-1]))]
+    return ELEMENTS[(int(year_string_arrayed[-1]))]'''
+    
+def get_year_heavenly_stem(solar_year, solar_month, solar_day):
+  fixed_date = ld.LunarDate.fromSolarDate(1900,1,31)
+  solar_new_date = [solar_year, solar_month, solar_day] # solar
+  fixed_date_dtformat = dt.date(fixed_date.year, fixed_date.month, fixed_date.day)
 
-def get_month_heavenly_stem(solar_birthdate):
+  if (solar_new_date[0] == 1900 and solar_new_date[1] == 1 and solar_new_date[2] < 31) or (solar_new_date[0] < 1900):
+    day_diff = ld.LunarDate.fromSolarDate(solar_new_date[0],solar_new_date[1],solar_new_date[2]).day - 1
+    lunar_new_date = fixed_date_dtformat + timedelta(day_diff)
+  else:
+    lunar_new_date = ld.LunarDate.fromSolarDate(solar_new_date[0], solar_new_date[1], solar_new_date[2])
+
+  year_heavenly_stem_index = int((str(lunar_new_date.year).strip(''))[-1])
+  return ELEMENTS[year_heavenly_stem_index]
+
+'''def get_month_heavenly_stem(solar_birthdate):
     lunar_birthdate = Converter.Solar2Lunar(solar_birthdate)
     while lunar_birthdate.year < 2010: # 2010 is the year of Metal Tiger
         lunar_birthdate.year += 10
@@ -274,16 +341,49 @@ def get_month_heavenly_stem(solar_birthdate):
     year_string_arrayed = str(lunar_birthdate.year).strip('')
     year_element_index = (int(year_string_arrayed[-1]))
     return MONTH_HEAVENLY_STEM_ACCORDING_TO_YEAR_HEAVENLY_STEM[year_element_index][lunar_birthdate.month-1]
+'''
+def get_month_heavenly_stem(solar_year, solar_month, solar_day):
+  fixed_date = ld.LunarDate.fromSolarDate(1900,1,31)
+  solar_new_date = [solar_year, solar_month, solar_day] # solar
+  fixed_date_dtformat = dt.date(fixed_date.year, fixed_date.month, fixed_date.day)
 
-def get_day_heavenly_stem(solar_birthdate):
+  if (solar_new_date[0] == 1900 and solar_new_date[1] == 1 and solar_new_date[2] < 31) or (solar_new_date[0] < 1900):
+    day_diff = ld.LunarDate.fromSolarDate(solar_new_date[0],solar_new_date[1],solar_new_date[2]).day - 1
+    lunar_new_date = fixed_date_dtformat + timedelta(day_diff)
+  else:
+    lunar_new_date = ld.LunarDate.fromSolarDate(solar_new_date[0], solar_new_date[1], solar_new_date[2])
+
+  year_heavenly_stem_index = int((str(lunar_new_date.year).strip(''))[-1])
+  return MONTH_HEAVENLY_STEM_ACCORDING_TO_YEAR_HEAVENLY_STEM[year_heavenly_stem_index][lunar_new_date.month - 1]
+
+'''def get_day_heavenly_stem(solar_birthdate):
     base_date = datetime.date(1900, 1, 1)
     current_date = datetime.date(solar_birthdate.year, solar_birthdate.month, solar_birthdate.day)
     delta_days = (current_date - base_date).days
     return ELEMENTS[(delta_days % 10)-6]
+'''
 
-def get_hour_heavenly_stem(solar_birthdate, hour, dst=False):
+def get_day_heavenly_stem(solar_year, solar_month, solar_day):
+    fixed_date = dt.date(2005,11,15) # yin water day
+    solar_new_date = dt.date(solar_year,solar_month,solar_day)
+    difference_in_days = (solar_new_date - fixed_date).days
+
+    i = 3 + difference_in_days
+
+    if i < 0:
+        while i < 10:
+            i += 10
+        i -= 10
+    if i > 9:
+        while i > 9:
+            i -= 10
+        i -= 10
+    
+    return ELEMENTS[i]
+
+def get_hour_heavenly_stem(year, month, day, hour, dst=False):
     hour_earthly_branch = get_hour_earthly_branch(hour, dst)
-    day_heavenly_stem = get_day_heavenly_stem(solar_birthdate)
+    day_heavenly_stem = get_day_heavenly_stem(year, month, day)
     if day_heavenly_stem == '甲': # means daymaster is yang wood
         if hour_earthly_branch == '子': # Rat hour
             return ELEMENTS[HOUR_HEAVENLY_STEM_ACCORDING_TO_DAY_HEAVENLY_STEM[0][0]]
@@ -535,4 +635,7 @@ def get_hour_heavenly_stem(solar_birthdate, hour, dst=False):
         else: # Pig hour
             return ELEMENTS[HOUR_HEAVENLY_STEM_ACCORDING_TO_DAY_HEAVENLY_STEM[9][11]]
     
+    
+
+
 

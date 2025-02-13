@@ -1,0 +1,16 @@
+levando em conta que 1 de janeiro de 1900 é o dia 0
+
+então todos os dias que terminam nos seguintes números são dos seguintes elementos:
+0 = madeira yang
+1 = madeira yin
+2 = fogo yang
+3 = fogo yin
+4 = terra  yang
+5 = terra yin
+6 = metal yang
+7 = metal yin
+8 = água yang
+9 = água yin
+
+levando em conta que 2 de janeiro dee 1900 é o dia 1 pois a diferença em dias entre as duas datas é 1, temos que
+dia 2 de janeiro de 1900 foi um dia de madeira yin
