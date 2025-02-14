@@ -1,5 +1,6 @@
 import methods.build_chart as buildChart
 import methods.calc_elements as calcElements
+import methods.tayun as tayun
 
 # main code
 year = -1
@@ -67,6 +68,12 @@ if option == 'y':
     elif daylight_saving_time == 'n':
         daylight_saving_time = False
 
+gender = ''
+while gender != 'm' and gender != 'f':
+    gender = input("Enter the gender (m/f): ").lower().strip()
+    if gender != 'm' and gender != 'f':
+        print("You must insert a valid gender for the TaYun calculations!")
+
 year_zodiac = buildChart.get_year_earthly_branch(year, month, day)
 month_zodiac = buildChart.get_month_earthly_branch(year, month, day)
 day_zodiac = buildChart.get_day_earthly_branch(year, month, day)
@@ -74,6 +81,8 @@ day_zodiac = buildChart.get_day_earthly_branch(year, month, day)
 year_element = buildChart.get_year_heavenly_stem(year, month, day)
 month_element = buildChart.get_month_heavenly_stem(year, month, day)
 day_element = buildChart.get_day_heavenly_stem(year, month, day)
+
+luckcycles = tayun.generate_tayun(gender, year_element, month_element, month_zodiac)
 
 if option == 'y':
     hour_zodiac = buildChart.get_hour_earthly_branch(hour, daylight_saving_time)
@@ -94,3 +103,10 @@ print(f'Fire: {format(elements["fire"], ".2f")}% ({calcElements.get_element_stat
 print(f'Earth: {format(elements["earth"], ".2f")}% ({calcElements.get_element_status(elements["earth"])})')
 print(f'Metal: {format(elements["metal"], ".2f")}% ({calcElements.get_element_status(elements["metal"])})')
 print(f'Water: {format(elements["water"], ".2f")}% ({calcElements.get_element_status(elements["water"])})')
+
+c = 1
+
+print('\nTaYun:')
+for pillar in luckcycles:
+    print(f'{c}th pillar: {pillar[0]}{pillar[1]}')
+    c += 1
