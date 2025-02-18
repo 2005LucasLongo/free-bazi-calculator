@@ -1,6 +1,7 @@
 import methods.build_chart as buildChart
 import methods.calc_elements as calcElements
 import methods.tayun as tayun
+import methods.shen_sha as stars
 
 # main code
 year = -1
@@ -110,3 +111,15 @@ print('\nTaYun:')
 for pillar in luckcycles:
     print(f'{c}th pillar: {pillar[0]}{pillar[1]}')
     c += 1
+
+showHour = option
+option = ''
+while option != 'y' and option != 'n':
+    option = str(input('\nDo you want to see the shen sha of this chart? (y/n): ')).lower().strip()
+    if option != 'y' and option != 'n':
+        print('You must insert a valid option!')
+if option == 'y':
+    if showHour == 'y':
+        stars.check_all_full_chart(year_element, year_zodiac, month_element, month_zodiac, day_element, day_zodiac, hour_element, hour_zodiac)
+    else:
+        stars.check_all_no_hour_chart(year_element, year_zodiac, month_element, month_zodiac, day_element, day_zodiac)
