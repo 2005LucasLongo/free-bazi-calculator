@@ -84,6 +84,7 @@ month_element = buildChart.get_month_heavenly_stem(year, month, day)
 day_element = buildChart.get_day_heavenly_stem(year, month, day)
 
 luckcycles = tayun.generate_tayun(gender, year_element, month_element, month_zodiac)
+# tayun_initial_year = tayun.get_tayun_start(year, month, day, day_element, gender)
 
 if option == 'y':
     hour_zodiac = buildChart.get_hour_earthly_branch(hour, daylight_saving_time)
@@ -105,12 +106,10 @@ print(f'Earth: {format(elements["earth"], ".2f")}% ({calcElements.get_element_st
 print(f'Metal: {format(elements["metal"], ".2f")}% ({calcElements.get_element_status(elements["metal"])})')
 print(f'Water: {format(elements["water"], ".2f")}% ({calcElements.get_element_status(elements["water"])})')
 
-c = 1
-
 print('\nTaYun:')
 for pillar in luckcycles:
-    print(f'{c}th pillar: {pillar[0]}{pillar[1]}')
-    c += 1
+    print(f'{pillar[0]}{pillar[1]}')
+    # tayun_initial_year += 10
 
 showHour = option
 option = ''

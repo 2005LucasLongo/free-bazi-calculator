@@ -365,29 +365,81 @@ def check_general_star (day_earthly_branch, other_earthly_branch):
         general_star = True # fire triad, horse
     return general_star
 
-def check_travelling_horse_star (day_earthly_branch, other_earthly_branch):
-    travelling_horse_star = False
+def check_travelling_horse_star (year_earthly_branch, day_earthly_branch, other_earthly_branch):
+    # chekcing day branch
     if (day_earthly_branch in [ZODIAC[10], ZODIAC[2], ZODIAC[6]]) and (other_earthly_branch == ZODIAC[0]):
-        travelling_horse_star = True # water triad, tiger
-    elif (day_earthly_branch in [ZODIAC[11], ZODIAC[3], ZODIAC[7]]) and (other_earthly_branch == ZODIAC[9]):
-        travelling_horse_star = True # metal triad, pig
-    elif (day_earthly_branch in [ZODIAC[1], ZODIAC[5], ZODIAC[9]]) and (other_earthly_branch == ZODIAC[3]):
-        travelling_horse_star = True # wood triad, snake
-    elif (day_earthly_branch in [ZODIAC[0], ZODIAC[4], ZODIAC[8]]) and (other_earthly_branch == ZODIAC[6]):
-        travelling_horse_star = True # fire triad, monkey
-    return travelling_horse_star
+        return True # water triad, tiger
+    if (day_earthly_branch in [ZODIAC[11], ZODIAC[3], ZODIAC[7]]) and (other_earthly_branch == ZODIAC[9]):
+        return True # metal triad, pig
+    if (day_earthly_branch in [ZODIAC[1], ZODIAC[5], ZODIAC[9]]) and (other_earthly_branch == ZODIAC[3]):
+        return True # wood triad, snake
+    if (day_earthly_branch in [ZODIAC[0], ZODIAC[4], ZODIAC[8]]) and (other_earthly_branch == ZODIAC[6]):
+        return True # fire triad, monkey
+    # chekcing year branch
+    if year_earthly_branch == ZODIAC[10] and other_earthly_branch == ZODIAC[0]: # rat month
+        return True
+    if year_earthly_branch == ZODIAC[11] and other_earthly_branch == ZODIAC[9]: # ox month
+        return True
+    if year_earthly_branch == ZODIAC[0] and other_earthly_branch == ZODIAC[6]: # tiger month
+        return True
+    if year_earthly_branch == ZODIAC[1] and other_earthly_branch == ZODIAC[3]: # rabbit month
+        return True
+    if year_earthly_branch == ZODIAC[2] and other_earthly_branch == ZODIAC[0]: # dragon month
+        return True
+    if year_earthly_branch == ZODIAC[3] and other_earthly_branch == ZODIAC[9]: # snake month
+        return True
+    if year_earthly_branch == ZODIAC[4] and other_earthly_branch == ZODIAC[6]: # horse month
+        return True
+    if year_earthly_branch == ZODIAC[5] and other_earthly_branch == ZODIAC[3]: # goat month
+        return True
+    if year_earthly_branch == ZODIAC[6] and other_earthly_branch == ZODIAC[0]: # monkey month
+        return True
+    if year_earthly_branch == ZODIAC[7] and other_earthly_branch == ZODIAC[9]: # rooster month
+        return True
+    if year_earthly_branch == ZODIAC[8] and other_earthly_branch == ZODIAC[6]: # dog month
+        return True
+    if year_earthly_branch == ZODIAC[9] and other_earthly_branch == ZODIAC[3]: # pig month
+        return True
+    else:
+        return False
 
-def check_peach_blossoms_star (day_earthly_branch, other_earthly_branch):
-    peach_blossoms_star = False
+def check_peach_blossoms_star (year_earthly_branch, day_earthly_branch, other_earthly_branch):
+    # checking day branch
     if (day_earthly_branch in [ZODIAC[10], ZODIAC[2], ZODIAC[6]]) and (other_earthly_branch == ZODIAC[7]):
-        peach_blossoms_star = True # water triad, rooster
+        return True # water triad, rooster
     elif (day_earthly_branch in [ZODIAC[11], ZODIAC[3], ZODIAC[7]]) and (other_earthly_branch == ZODIAC[4]):
-        peach_blossoms_star = True # metal triad, horse
+        return True # metal triad, horse
     elif (day_earthly_branch in [ZODIAC[1], ZODIAC[5], ZODIAC[9]]) and (other_earthly_branch == ZODIAC[10]):
-        peach_blossoms_star = True # wood triad, rat
+        return True # wood triad, rat
     elif (day_earthly_branch in [ZODIAC[0], ZODIAC[4], ZODIAC[8]]) and (other_earthly_branch == ZODIAC[1]):
-        peach_blossoms_star = True # fire triad, rabbit
-    return peach_blossoms_star
+        return True # fire triad, rabbit
+    # chekcing year branch
+    if year_earthly_branch == ZODIAC[10] and other_earthly_branch == ZODIAC[7]: # rat month
+        return True
+    if year_earthly_branch == ZODIAC[11] and other_earthly_branch == ZODIAC[4]: # ox month
+        return True
+    if year_earthly_branch == ZODIAC[0] and other_earthly_branch == ZODIAC[1]: # tiger month
+        return True
+    if year_earthly_branch == ZODIAC[1] and other_earthly_branch == ZODIAC[10]: # rabbit month
+        return True
+    if year_earthly_branch == ZODIAC[2] and other_earthly_branch == ZODIAC[7]: # dragon month
+        return True
+    if year_earthly_branch == ZODIAC[3] and other_earthly_branch == ZODIAC[4]: # snake month
+        return True
+    if year_earthly_branch == ZODIAC[4] and other_earthly_branch == ZODIAC[1]: # horse month
+        return True
+    if year_earthly_branch == ZODIAC[5] and other_earthly_branch == ZODIAC[10]: # goat month
+        return True
+    if year_earthly_branch == ZODIAC[6] and other_earthly_branch == ZODIAC[7]: # monkey month
+        return True
+    if year_earthly_branch == ZODIAC[7] and other_earthly_branch == ZODIAC[4]: # rooster month
+        return True
+    if year_earthly_branch == ZODIAC[8] and other_earthly_branch == ZODIAC[1]: # dog month
+        return True
+    if year_earthly_branch == ZODIAC[9] and other_earthly_branch == ZODIAC[10]: # pig month
+        return True
+    else:
+        return False
 
 def check_robbing_star (day_earthly_branch, other_earthly_branch):
     robbing_star = False
@@ -437,7 +489,300 @@ def check_forlorn_star (day_earthly_branch, other_earthly_branch):
         forlorn_star == True # monkey-rooster-dog, goat
     return forlorn_star
 
+# the legendary point where I started adding new detectors
+def check_intelectual_pillar (any_heavenly_stem, any_earthly_branch):
+    '''
+    Pilares intelectuais:
+    Pessoas altamente inteligentes, com mentes aguçadas que sobressaem academicamente.
+    '''
+    pillar = any_heavenly_stem + any_earthly_branch
+    pillars = [
+        '戊⼦',
+        '⼰丑',
+        '⾟⺒',
+        '丁未',
+        '丙午',
+        '⼰未'
+    ]
+    if pillar in pillars:
+        return True
+    else:
+        return False
+
+def check_clever_pillar  (any_heavenly_stem, any_earthly_branch):
+    '''
+    Pilar da astúcia e do metodismo:
+    Indivíduos altamente inteligentes que planeiam metodicamente.
+    '''
+    pillar = any_heavenly_stem + any_earthly_branch
+    pillars = [
+        '戊子',
+        '⾟巳'
+    ]
+    if pillar in pillars:
+        return True
+    else:
+        return False
+
+def check_canniness_pillar (any_heavenly_stem, any_earthly_branch):
+    '''
+    Pilar de esperteza:
+    Peritos, inteligentes e perceptivos.
+    '''
+    pillar = any_heavenly_stem + any_earthly_branch
+    pillars = [
+        '丙⾠',
+        '戊午',
+        '甲⾠',
+        '庚戌',
+        '⾟亥',
+        '丁酉',
+        '壬寅',
+        '庚寅',
+        '⼄亥',
+        '癸未'
+    ]
+    if pillar in pillars:
+        return True
+    else:
+        return False
+
+def check_redlight_pillar (any_heavenly_stem, any_earthly_branch):
+    '''
+    Pilar da Luz Vermelha:
+    (apelidei de pilar da putaria, mas a tradução oficial é a acima)
+    (entendeu? luz vermelha? putaria? eu achei engraçado)
+    Este sete pilares representam problemas no romance, relacionamentos e amor.
+    '''
+    pillar = any_heavenly_stem + any_earthly_branch
+    pillars = [
+        '丁未',
+        '庚戌',
+        '甲戌',
+        '⼄亥',
+        '癸未',
+        '丙寅',
+        '⾟未'
+    ]
+    if pillar in pillars:
+        return True
+    else:
+        return False
+
+def check_yinyang_mismatch_pillar (any_heavenly_stem, any_earthly_branch):
+    '''
+    Pilares do desenocntro de Yin e Yang:
+    Pessoas que experienciam problemas de relacionamento afectivo ou familiar (cônjuge ou sogros).
+    '''
+    pillar = any_heavenly_stem + any_earthly_branch
+    pillars = [
+        '⾟⾣',
+        '壬戌',
+        '癸亥',
+        '丙午',
+        '丁未',
+        '戊申',
+        '⾟卯',
+        '壬⾠',
+        '癸巳',
+        '丙子',
+        '丁丑',
+        '戊寅'
+    ]
+    if pillar in pillars:
+        return True
+    else:
+        return False
+
+def check_domination_pillar (any_heavenly_stem, any_earthly_branch):
+    '''
+    Pilares dominantes:
+    Pessoas altamente capazes, ambiciosas e motivadas. Sucesso e reconhecimento. Teimosia e espiritualidade.
+    '''
+    pillar = any_heavenly_stem + any_earthly_branch
+    pillars = [
+        '壬戌',
+        '庚戌',
+        '戊戌',
+        '壬辰',
+        '庚辰',
+        '戊辰'
+    ]
+    if pillar in pillars:
+        return True
+    else:
+        return False
+    
+def check_heavenly_mitigation_star (month_earthly_branch, any_heavenly_stem, any_earthly_branch):
+    '''
+    Estrela do alívio celestial: quando este pilar está presente na carta base, em qualquer pilar,
+    confere um alto grau de proteção, normalmente usado para aliviar questões legais.
+    '''
+    pillar = any_heavenly_stem + any_earthly_branch
+    if month_earthly_branch == ZODIAC[10] and pillar == f'{ELEMENTS[4]}{ZODIAC[10]}': # rat month
+        return True
+    if month_earthly_branch == ZODIAC[11] and pillar == f'{ELEMENTS[4]}{ZODIAC[10]}': # ox month
+        return True
+    if month_earthly_branch == ZODIAC[0] and pillar == f'{ELEMENTS[8]}{ZODIAC[0]}': # tiger month
+        return True
+    if month_earthly_branch == ZODIAC[1] and pillar == f'{ELEMENTS[8]}{ZODIAC[0]}': # rabbit month
+        return True
+    if month_earthly_branch == ZODIAC[2] and pillar == f'{ELEMENTS[8]}{ZODIAC[0]}': # dragon month
+        return True
+    if month_earthly_branch == ZODIAC[3] and pillar == f'{ELEMENTS[4]}{ZODIAC[4]}': # snake month
+        return True
+    if month_earthly_branch == ZODIAC[4] and pillar == f'{ELEMENTS[4]}{ZODIAC[4]}': # horse month
+        return True
+    if month_earthly_branch == ZODIAC[5] and pillar == f'{ELEMENTS[4]}{ZODIAC[4]}': # goat month
+        return True
+    if month_earthly_branch == ZODIAC[6] and pillar == f'{ELEMENTS[8]}{ZODIAC[6]}': # monkey month
+        return True
+    if month_earthly_branch == ZODIAC[7] and pillar == f'{ELEMENTS[8]}{ZODIAC[6]}': # rooster month
+        return True
+    if month_earthly_branch == ZODIAC[8] and pillar == f'{ELEMENTS[8]}{ZODIAC[6]}': # dog month
+        return True
+    if month_earthly_branch == ZODIAC[9] and pillar == f'{ELEMENTS[4]}{ZODIAC[10]}': # pig month
+        return True
+    else:
+        return False
+
+def check_heavenly_happiness_star (month_earthly_branch, any_earthly_branch):
+    '''
+    Estrela da felicidade celestial: est aestrela torna a pessoa optimista, altamente satisfeita
+    com a sua vida e  generosa. Não se envolve em disputas ou detalhes supérfluos. Quando encontra
+    obstáculos e desafios trabalhará para os resolver. É responsável não pregando ou culpabilizando
+    terceiros. Quando uma carta tem a estrela do alívio celestial e a felicidade celestial diz-se
+    que a pessoa é abençoada.
+    '''
+    if month_earthly_branch == ZODIAC[10] and any_earthly_branch == ZODIAC[5]: # rat month
+        return True
+    if month_earthly_branch == ZODIAC[11] and any_earthly_branch == ZODIAC[5]: # ox month
+        return True
+    if month_earthly_branch == ZODIAC[0] and any_earthly_branch == ZODIAC[8]: # tiger month
+        return True
+    if month_earthly_branch == ZODIAC[1] and any_earthly_branch == ZODIAC[8]: # rabbit month
+        return True
+    if month_earthly_branch == ZODIAC[2] and any_earthly_branch == ZODIAC[8]: # dragon month
+        return True
+    if month_earthly_branch == ZODIAC[3] and any_earthly_branch == ZODIAC[11]: # snake month
+        return True
+    if month_earthly_branch == ZODIAC[4] and any_earthly_branch == ZODIAC[11]: # horse month
+        return True
+    if month_earthly_branch == ZODIAC[5] and any_earthly_branch == ZODIAC[11]: # goat month
+        return True
+    if month_earthly_branch == ZODIAC[6] and any_earthly_branch == ZODIAC[2]: # monkey month
+        return True
+    if month_earthly_branch == ZODIAC[7] and any_earthly_branch == ZODIAC[2]: # rooster month
+        return True
+    if month_earthly_branch == ZODIAC[8] and any_earthly_branch == ZODIAC[2]: # dog month
+        return True
+    if month_earthly_branch == ZODIAC[9] and any_earthly_branch == ZODIAC[5]: # pig month
+        return True
+    else:
+        return False
+
+def check_heavenly_virtue_star(month_earthly_branch, any_heavenly_stem, any_earthly_branch):
+    '''
+    Estrelas da virtude celestial e virtude mensal:
+    Ambas estas estrelas potencial o mesmo efeito, sendo que a virtude celestial representa
+    o lado yang, tendo uma consequênica mais forte e fiável. A estrela da virtude mensal, como
+    é yin representa uma protecção mais gentil e suave.
+    
+    Estas estrelas aliviam influências negativas. Quando estão presentes na carta base potenciam
+    uma personalidade bondosa, benevolente, generosa e que recebe assistência do universo.
+    
+    Claro que se não estiverem presentes na carta base ainda se poderão sentir os seus efeitos
+    nos períodos do destino ou anos.
+    
+    A assistência do universo toma diversas formas, diferentes para cada um de nós. Se houver a
+    oportunidade de passar por um ano ou período do destino que active estas estrelas na nossa
+    carta, é importante registrar e anotar os benefícios recebidos.
+    '''
+    # first we will check the heavenly virtue star, and on the next function we check the monthly virtue star
+    if month_earthly_branch == ZODIAC[10] and (any_earthly_branch == ZODIAC[3]): # rat month
+        return True
+    if month_earthly_branch == ZODIAC[11] and (any_earthly_branch == ZODIAC[0]): # ox month
+        return True
+    if month_earthly_branch == ZODIAC[0] and (any_heavenly_stem == ELEMENTS[7]): # tiger month
+        return True
+    if month_earthly_branch == ZODIAC[1] and (any_earthly_branch == ZODIAC[6]): # rabbit month
+        return True
+    if month_earthly_branch == ZODIAC[2] and (any_heavenly_stem == ELEMENTS[2]): # dragon month
+        return True
+    if month_earthly_branch == ZODIAC[3] and (any_heavenly_stem == ELEMENTS[1]): # snake month
+        return True
+    if month_earthly_branch == ZODIAC[4] and (any_earthly_branch == ZODIAC[9]): # horse month
+        return True
+    if month_earthly_branch == ZODIAC[5] and (any_heavenly_stem == ELEMENTS[4]): # goat month
+        return True
+    if month_earthly_branch == ZODIAC[6] and (any_heavenly_stem == ELEMENTS[3]): # monkey month
+        return True
+    if month_earthly_branch == ZODIAC[7] and (any_earthly_branch == ZODIAC[0]): # rooster month
+        return True
+    if month_earthly_branch == ZODIAC[8] and (any_heavenly_stem == ELEMENTS[6]): # dog month
+        return True
+    if month_earthly_branch == ZODIAC[9] and (any_heavenly_stem == ELEMENTS[5]): # pig month
+        return True
+    else:
+        return False
+
+def check_monthly_virtue_star(month_earthly_branch, any_heavenly_stem, any_earthly_branch):
+    '''
+    Estrelas da virtude celestial e virtude mensal:
+    Ambas estas estrelas potencial o mesmo efeito, sendo que a virtude celestial representa
+    o lado yang, tendo uma consequênica mais forte e fiável. A estrela da virtude mensal, como
+    é yin representa uma protecção mais gentil e suave.
+    
+    Estas estrelas aliviam influências negativas. Quando estão presentes na carta base potenciam
+    uma personalidade bondosa, benevolente, generosa e que recebe assistência do universo.
+    
+    Claro que se não estiverem presentes na carta base ainda se poderão sentir os seus efeitos
+    nos períodos do destino ou anos.
+    
+    A assistência do universo toma diversas formas, diferentes para cada um de nós. Se houver a
+    oportunidade de passar por um ano ou período do destino que active estas estrelas na nossa
+    carta, é importante registrar e anotar os benefícios recebidos.
+    '''
+    if month_earthly_branch == ZODIAC[10] and (any_heavenly_stem == ELEMENTS[2]): # rat month
+        return True
+    if month_earthly_branch == ZODIAC[11] and (any_heavenly_stem == ELEMENTS[0]): # ox month
+        return True
+    if month_earthly_branch == ZODIAC[0] and (any_heavenly_stem == ELEMENTS[6]): # tiger month
+        return True
+    if month_earthly_branch == ZODIAC[1] and (any_heavenly_stem == ELEMENTS[4]): # rabbit month
+        return True
+    if month_earthly_branch == ZODIAC[2] and (any_heavenly_stem == ELEMENTS[2]): # dragon month
+        return True
+    if month_earthly_branch == ZODIAC[3] and (any_heavenly_stem == ELEMENTS[0]): # snake month
+        return True
+    if month_earthly_branch == ZODIAC[4] and (any_heavenly_stem == ELEMENTS[6]): # horse month
+        return True
+    if month_earthly_branch == ZODIAC[5] and (any_heavenly_stem == ELEMENTS[4]): # goat month
+        return True
+    if month_earthly_branch == ZODIAC[6] and (any_heavenly_stem == ELEMENTS[2]): # monkey month
+        return True
+    if month_earthly_branch == ZODIAC[7] and (any_heavenly_stem == ELEMENTS[0]): # rooster month
+        return True
+    if month_earthly_branch == ZODIAC[8] and (any_heavenly_stem == ELEMENTS[6]): # dog month
+        return True
+    if month_earthly_branch == ZODIAC[9] and (any_heavenly_stem == ELEMENTS[4]): # pig month
+        return True
+    else:
+        return False
+
 # copypaste for code-use
+
+'''
+def check_name_pillar (any_heavenly_stem, any_earthly_branch):
+    pillar = any_heavenly_stem + any_earthly_branch
+    pillars = [
+    ]
+    if pillar in pillars:
+        return True
+    else:
+        return False
+'''
+
 '''
 def check_NAME_star (day_heavenly_stem, any_earthly_branch):
     NAME_star = False
@@ -465,103 +810,184 @@ def check_NAME_star (day_heavenly_stem, any_earthly_branch):
 '''
 
     
-def check_all(day_heavenly_stem, day_earthly_branch, any_heavenly_stem, any_earthly_branch):
+def check_all(year_heavenly_stem, year_earthly_branch, month_earthly_branch, day_heavenly_stem, day_earthly_branch, any_heavenly_stem, any_earthly_branch):
+    stars = []
     hasStars = False
+    if check_monthly_virtue_star(month_earthly_branch, any_heavenly_stem, any_earthly_branch):
+        print('- Monthly Virtue Star')
+        stars.append('Monthly Virtue Star')
+        hasStars = True
+    if check_heavenly_virtue_star(month_earthly_branch, any_heavenly_stem, any_earthly_branch):
+        print('- Heavenly Virtue Star')
+        stars.append('Heavenly Virtue Star')
+        hasStars = True
+    if check_heavenly_happiness_star(month_earthly_branch, any_earthly_branch):
+        print('- Heavenly Happiness Star')
+        stars.append('Heavenly Happiness Star')
+        hasStars = True
+    if check_heavenly_mitigation_star(month_earthly_branch, any_heavenly_stem, any_earthly_branch):
+        print('- Heavenly Mitigation Star')
+        stars.append('Heavenly Mitigation Star')
+        hasStars = True
+    if check_domination_pillar(any_heavenly_stem, any_earthly_branch):
+        print('- Pillar of Domination')
+        stars.append('Pillar of Domination')
+        hasStars = True
+    if check_yinyang_mismatch_pillar(any_heavenly_stem, any_earthly_branch):
+        print('- Pillar of Yin and Yang Mismatch')
+        stars.append('Pillar of Yin and Yang Mismatch')
+        hasStars = True
+    if check_redlight_pillar(any_heavenly_stem, any_earthly_branch):
+        print('- Red-light Pillar')
+        stars.append('Red-light Pillar')
+        hasStars = True
+    if check_canniness_pillar(any_heavenly_stem, any_earthly_branch):
+        print('- Pillar of Canniness')
+        stars.append('Pillar of Canniness')
+        hasStars = True
+    if check_clever_pillar(any_heavenly_stem, any_earthly_branch):
+        print('- Pillar of Cleverness and Methodism')
+        stars.append('Pillar of Cleverness and Methodism')
+        hasStars = True
+    if check_intelectual_pillar(any_heavenly_stem, any_earthly_branch):
+        print('- Intelectual Pillar')
+        stars.append('Intelectual Pillar')
+        hasStars = True
     if check_nobleman_star(day_heavenly_stem, any_earthly_branch):
         print('- Nobleman Star')
+        stars.append('Nobleman Star')
         hasStars = True
     if check_success_star(day_heavenly_stem, any_earthly_branch):
         print('- Success Star')
+        stars.append('Success Star')
         hasStars = True
     if check_yang_heavenly_noble_star(day_heavenly_stem, any_earthly_branch):
         print('- Yang Heavenly Noble Star')
+        stars.append('Yang Heavenly Noble Star')
         hasStars = True
     if check_yin_heavenly_noble_star(day_heavenly_stem, any_earthly_branch):
         print('- Yin Heavenly Noble Star')
+        stars.append('Yin Heavenly Noble Star')
         hasStars = True
     if check_prosperity_star(day_heavenly_stem, any_earthly_branch):
         print('- Prosperity Star')
+        stars.append('Prosperity Star')
         hasStars = True
     if check_sword_star(day_heavenly_stem, any_earthly_branch):
         print('- Sword Star')
+        stars.append('Sword Star')
         hasStars = True
     if check_golden_carriage_star(day_heavenly_stem, any_earthly_branch):
         print('- Golden Carriage Star')
+        stars.append('Golden Carriage Star')
         hasStars = True
     if check_red_peach_blossom_star(day_heavenly_stem, any_earthly_branch):
         print('- Red Peach Blossom Star or Erotic Star')
+        stars.append('Red Peach Blossom Star or Erotic Star')
         hasStars = True
     if check_academic_star(day_heavenly_stem, any_earthly_branch):
         print('- Academic Star')
+        stars.append('Academic Star')
         hasStars = True
     if check_literacy_star(day_heavenly_stem, any_earthly_branch):
         print('- Literacy Star of Learning Hall Star')
+        stars.append('Literacy Star of Learning Hall Star')
         hasStars = True
     if check_taiji_star(day_heavenly_stem, any_earthly_branch):
         print('- Methaphysical Interest Star or Tai Ji Star')
+        stars.append('Methaphysical Interest Star or Tai Ji Star')
         hasStars = True
     if check_liuhegui_star(day_heavenly_stem, any_heavenly_stem, any_earthly_branch):
         print('- Mentor of the Six Harmonies Star or Liu He Gui Star')
+        stars.append('Mentor of the Six Harmonies Star or Liu He Gui Star')
         hasStars = True
     if check_guishi_star(day_heavenly_stem, any_heavenly_stem, any_earthly_branch):
         print('- Noble Righteous Output Star')
+        stars.append('Noble Righteous Output Star')
         hasStars = True
     if check_guihe_star(day_heavenly_stem, any_heavenly_stem, any_earthly_branch):
         print('- Noble Harmony Star')
+        stars.append('Noble Harmony Star')
         hasStars = True
     if check_general_star(day_heavenly_stem, any_earthly_branch):
         print('- General star of Gold Safe Star')
+        stars.append('General star of Gold Safe Star')
         hasStars = True
-    if check_travelling_horse_star(day_heavenly_stem, any_earthly_branch):
+    if check_travelling_horse_star(year_earthly_branch, day_heavenly_stem, any_earthly_branch):
         print('- Travelling Horse Star')
+        stars.append('Travelling Horse Star')
         hasStars = True
-    if check_peach_blossoms_star(day_heavenly_stem, any_earthly_branch):
+    if check_peach_blossoms_star(year_earthly_branch, day_earthly_branch, any_earthly_branch):
         print('- Star of Romance or Peach Blossoms Star')
+        stars.append('Star of Romance or Peach Blossoms Star')
         hasStars = True
     if check_robbing_star(day_earthly_branch, any_earthly_branch):
         print('- Robbing Star')
+        stars.append('Robbing Star')
         hasStars = True
     if check_death_star(day_earthly_branch, any_earthly_branch):
         print('- Death Star')
+        stars.append('Death Star')
         hasStars = True
     if check_solitary_star(day_earthly_branch, any_earthly_branch):
         print('- Solitary Star or Star of Seclusion')
+        stars.append('Solitary Star or Star of Seclusion')
         hasStars = True
     if check_forlorn_star(day_earthly_branch, any_earthly_branch):
         print('- Forlorn Star or Abandoment Star')
+        stars.append('Forlorn Star or Abandoment Star')
         hasStars = True
     if not hasStars:
         print('Don\'t have stars')
-        
+    return stars
+
 def check_all_full_chart(year_heavenly_stem, year_earthly_branch, month_heavenly_stem, month_earthly_branch, day_heavenly_stem, day_earthly_branch, hour_heavenly_stem, hour_earthly_branch):
     # year pillar
     print(f'\nYear pillar ({year_heavenly_stem}{year_earthly_branch}):')
-    check_all(day_heavenly_stem, day_earthly_branch, year_heavenly_stem, year_earthly_branch)
+    year_pillar_stars = check_all(year_heavenly_stem, year_earthly_branch, month_earthly_branch, day_heavenly_stem, day_earthly_branch, year_heavenly_stem, year_earthly_branch)
 
     # month pillar
     print(f'\nMonth pillar ({month_heavenly_stem}{month_earthly_branch}):')
-    check_all(day_heavenly_stem, day_earthly_branch, month_heavenly_stem, month_earthly_branch)
+    month_pillar_stars = check_all(year_heavenly_stem, year_earthly_branch, month_earthly_branch, day_heavenly_stem, day_earthly_branch, month_heavenly_stem, month_earthly_branch)
 
     # day pillar
     print(f'\nDay pillar ({day_heavenly_stem}{day_earthly_branch}):')
-    check_all(day_heavenly_stem, day_earthly_branch, day_heavenly_stem, day_earthly_branch)
+    day_pillar_stars = check_all(year_heavenly_stem, year_earthly_branch, month_earthly_branch, day_heavenly_stem, day_earthly_branch, day_heavenly_stem, day_earthly_branch)
 
     # hour pillar
     print(f'\nHour pillar ({hour_heavenly_stem}{hour_earthly_branch}):')
-    check_all(day_heavenly_stem, day_earthly_branch, hour_heavenly_stem, hour_earthly_branch)
+    hour_pillar_stars = check_all(year_heavenly_stem, year_earthly_branch, month_earthly_branch, day_heavenly_stem, day_earthly_branch, hour_heavenly_stem, hour_earthly_branch)
+    
+    all_stars = {
+        'year': year_pillar_stars,
+        'month': month_pillar_stars,
+        'day': day_pillar_stars,
+        'hour': hour_pillar_stars
+    }
+    
+    return all_stars
+    
 
 def check_all_no_hour_chart(year_heavenly_stem, year_earthly_branch, month_heavenly_stem, month_earthly_branch, day_heavenly_stem, day_earthly_branch):
     # year pillar
     print(f'\nYear pillar ({year_heavenly_stem}{year_earthly_branch}):')
-    check_all(day_heavenly_stem, day_earthly_branch, year_heavenly_stem, year_earthly_branch)
+    year_pillar_stars = check_all(year_heavenly_stem, year_earthly_branch, month_earthly_branch, day_heavenly_stem, day_earthly_branch, year_heavenly_stem, year_earthly_branch)
 
     # month pillar
     print(f'\nMonth pillar ({month_heavenly_stem}{month_earthly_branch}):')
-    check_all(day_heavenly_stem, day_earthly_branch, month_heavenly_stem, month_earthly_branch)
+    month_pillar_stars = check_all(year_heavenly_stem, year_earthly_branch, month_earthly_branch, day_heavenly_stem, day_earthly_branch, month_heavenly_stem, month_earthly_branch)
 
     # day pillar
     print(f'\nDay pillar ({day_heavenly_stem}{day_earthly_branch}):')
-    check_all(day_heavenly_stem, day_earthly_branch, day_heavenly_stem, day_earthly_branch)
+    day_pillar_stars = check_all(year_heavenly_stem, year_earthly_branch, month_earthly_branch, day_heavenly_stem, day_earthly_branch, day_heavenly_stem, day_earthly_branch)
+    
+    all_stars = {
+        'year': year_pillar_stars,
+        'month': month_pillar_stars,
+        'day': day_pillar_stars
+    }
+    
+    return all_stars
 
 
 
