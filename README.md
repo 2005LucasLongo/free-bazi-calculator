@@ -1,5 +1,8 @@
 I'm doing this because I don't have money to spend on premium at the Bazi Calculator website
 
+Just download the "Free BaZi Calculator.exe" file and click on it (works only in PC)
+It MAY require you to install Python, I did not tested it yet, so I don't know
+
 
 Happy chinese new year of 2025!
 
