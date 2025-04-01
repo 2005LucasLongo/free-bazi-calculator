@@ -100,7 +100,7 @@ def get_tayun_start (solar_year, solar_month, solar_day, day_stem, gender):
     
     solar_date = dt.date(solar_year, solar_month, solar_day)
     lunar_date = ld.LunarDate.fromSolarDate(solar_date.year, solar_date.month, solar_date.day)
-    
+    print(lunar_date)
     JIEQI = [
         [lunar_date.year, 1, 6], # Xiaohan 0
         [lunar_date.year, 1, 21], # Dahan 1
@@ -129,8 +129,6 @@ def get_tayun_start (solar_year, solar_month, solar_day, day_stem, gender):
         [lunar_date.year+1, 1, 6], # Xiaohan 24
         [lunar_date.year+1, 1, 21], # Dahan 25
     ]
-    
-    print(lunar_date)
     chosen_jieqi = None # lunar
     chosen_jieqi_to_solar = None
     
@@ -153,7 +151,17 @@ def get_tayun_start (solar_year, solar_month, solar_day, day_stem, gender):
             raise Exception("Invalid element for day heavenly stem!")
     elif gender == 'f':
         if day_stem in ['庚', '壬', '甲', '丙', '戊']: # yang day stem
-            return 0
+            # gets the closest jieqi before the given date
+            for jieqi in JIEQI:
+                # new getter of the closest jieqi before the given date
+                if jieqi[0] > lunar_date.year:
+                    break
+                elif jieqi[0] == lunar_date.year and jieqi[1] > lunar_date.month:
+                    break
+                elif jieqi[1] == lunar_date.month and jieqi[2] > lunar_date.day:
+                    break
+                else:
+                    chosen_jieqi = jieqi
         elif day_stem in ['辛', '癸', '乙', '丁', '己']: # in day stem
             return 0
         else:
@@ -163,20 +171,22 @@ def get_tayun_start (solar_year, solar_month, solar_day, day_stem, gender):
             raise Exception("Invalid element and gender (must be 'm' or 'f')!")
         raise Exception("Gender must be 'm' or 'f'!")
     
-    print(chosen_jieqi)
     difference_in_days = math.floor((dt.date(lunar_date.year, lunar_date.month, lunar_date.day) - dt.date(chosen_jieqi[0], chosen_jieqi[1], chosen_jieqi[2])).total_seconds()/float(86400)) # (lunar_date - ld.LunarDate(chosen_jieqi[0], chosen_jieqi[1], chosen_jieqi[2])).days
     print(difference_in_days)
     if difference_in_days < 0:
-        difference_in_days = -(difference_in_days)
-    initial_tayun = math.ceil(difference_in_days/3)
-    return initial_tayun + solar_year
+        difference_in_days = 0-(difference_in_days)
+    initial_tayun = math.floor(difference_in_days/3)
+    return (initial_tayun + solar_year)
 
 
 # sample
-'''tayun = generate_tayun('m', '己', '丁', '酉')
-init_year = get_tayun_start(2009,3,4,'己','m')
+import build_chart as bc
+birthdate = [1986,2,9]
+gender = 'f'
+tayun = generate_tayun(gender, bc.get_year_heavenly_stem(birthdate[0], birthdate[1], birthdate[2]), bc.get_month_heavenly_stem(birthdate[0], birthdate[1], birthdate[2]), bc.get_month_earthly_branch(birthdate[0], birthdate[1], birthdate[2]), 10)
+init_year = get_tayun_start(solar_year=birthdate[0], solar_month=birthdate[1], solar_day=birthdate[2], day_stem=bc.get_day_heavenly_stem(birthdate[0], birthdate[1], birthdate[2]),gender=gender)
 
 print('-- TAYUN --')
 for pillar in tayun:
-    print(f'{init_year-2009} years ({init_year}): {pillar[0]}{pillar[1]}')
-    init_year += 10'''
+    print(f'{init_year-birthdate[0]} years ({init_year}): {pillar[0]}{pillar[1]}')
+    init_year += 10

@@ -283,7 +283,7 @@ def check_liuhegui_star (day_heavenly_stem, any_heavenly_stem, any_earthly_branc
         liuhegui_star = True # yang wood, wood rat or wood horse
     elif day_heavenly_stem == ELEMENTS[5] and (any_pillar in ['乙巳', '乙丑']):
         liuhegui_star = True # yin wood, wood snake or wood ox
-    elif day_heavenly_stem == ELEMENTS[6] and (any_pillar in [ZODIAC['丙寅', '丙辰']]):
+    elif day_heavenly_stem == ELEMENTS[6] and (any_pillar in ['丙寅', '丙辰']):
         liuhegui_star = True # yang fire, fire tiger or fire dragon
     # charts with yin fire DM don't have this star
     elif day_heavenly_stem == ELEMENTS[8] and (any_pillar in ['戊子', '戊午']):
