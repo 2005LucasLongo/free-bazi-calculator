@@ -179,7 +179,7 @@ def get_tayun_start (solar_year, solar_month, solar_day, day_stem, gender):
     return (initial_tayun + solar_year)
 
 
-# sample
+'''# sample
 import build_chart as bc
 birthdate = [1986,2,9]
 gender = 'f'
@@ -189,4 +189,4 @@ init_year = get_tayun_start(solar_year=birthdate[0], solar_month=birthdate[1], s
 print('-- TAYUN --')
 for pillar in tayun:
     print(f'{init_year-birthdate[0]} years ({init_year}): {pillar[0]}{pillar[1]}')
-    init_year += 10
+    init_year += 10'''

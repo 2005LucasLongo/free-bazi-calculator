@@ -2,6 +2,8 @@ import methods.build_chart as buildChart
 import methods.calc_elements as calcElements
 import methods.tayun as tayun
 import methods.shen_sha as stars
+import datetime as dt
+from datetime import timedelta
 
 # main code
 year = -1
@@ -66,6 +68,13 @@ if option == 'y':
             print("You must insert a valid option!")
     if daylight_saving_time == 'y':
         daylight_saving_time = True
+        if hour == 0:
+            hour = 23
+            date_datetime = dt.datetime(year, month, day) - timedelta(hours=1)
+            year = date_datetime.year
+            month = date_datetime.month
+            day = date_datetime.day
+            daylight_saving_time = False
     elif daylight_saving_time == 'n':
         daylight_saving_time = False
 

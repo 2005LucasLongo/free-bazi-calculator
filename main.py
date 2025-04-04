@@ -3,6 +3,8 @@ from tkinter import messagebox
 import methods.build_chart as bc
 import methods.calc_elements as elements
 import methods.shen_sha as shen
+import datetime as dt
+from datetime import timedelta
 
 # --------------------------------------------------
 # Dicionários de cores para os caracteres
@@ -118,6 +120,32 @@ def montar_mapa_bazi():
             if not (0 <= h <= 23):
                 messagebox.showerror("Erro", "Hour must be between 0 and 23.")
                 return
+            else:
+                if dst and h == 0:
+                    # if DST is checked and the person was born at midnight, we assume they were born at 23h the previous day
+                    h = 23
+                    previous_day = dt.datetime(a, m, d) - timedelta(days=1)
+                    a = previous_day.year
+                    m = previous_day.month
+                    d = previous_day.day
+                    print(f"Day changed to {d}/{m}/{a} due to DST.")
+                    dst = False
+                    
+                    # Atualiza os pilares do dia, mês e ano
+                    hs_d = bc.get_day_heavenly_stem(a, m, d)
+                    eb_d = bc.get_day_earthly_branch(a, m, d)
+                    hs_m = bc.get_month_heavenly_stem(a, m, d)
+                    eb_m = bc.get_month_earthly_branch(a, m, d)
+                    hs_a = bc.get_year_heavenly_stem(a, m, d)
+                    eb_a = bc.get_year_earthly_branch(a, m, d)
+                    
+                    update_heavenly_text(entry_hs_dia, hs_d)
+                    update_earthly_text(entry_eb_dia, eb_d)
+                    update_heavenly_text(entry_hs_mes, hs_m)
+                    update_earthly_text(entry_eb_mes, eb_m)
+                    update_heavenly_text(entry_hs_ano, hs_a)
+                    update_earthly_text(entry_eb_ano, eb_a)
+                    
         except ValueError:
             messagebox.showerror("Erro", "Hour must be a numeric value or be empty.")
             return

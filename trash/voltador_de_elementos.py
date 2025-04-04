@@ -55,8 +55,8 @@ def get_day_earthly_branch(solar_year, solar_month, solar_day):
     
     return ZODIAC[i]
     
-year = 1976
+year = 1804
 month = 10
-day = 4
+day = 3
 print(get_day_heavenly_stem(year, month, day))
 print(get_day_earthly_branch(year, month, day))

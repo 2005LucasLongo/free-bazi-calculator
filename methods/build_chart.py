@@ -282,6 +282,8 @@ def get_day_earthly_branch(solar_year, solar_month, solar_day):
 def get_hour_earthly_branch(hour, dst=False):
     if dst == True:
         hour -= 1
+    if hour == -1:
+        hour = 23
     if hour < 0 or hour > 23:
         raise 'Invalid hour'
     elif hour == 0 or hour == 23:
@@ -383,6 +385,11 @@ def get_day_heavenly_stem(solar_year, solar_month, solar_day):
 
 def get_hour_heavenly_stem(year, month, day, hour, dst=False):
     hour_earthly_branch = get_hour_earthly_branch(hour, dst)
+    if (hour == 0) and (dst == True):
+        datetime_date = dt.date(year, month, day) - timedelta(days=1)
+        year = datetime_date.year
+        month = datetime_date.month
+        day = datetime_date.day
     day_heavenly_stem = get_day_heavenly_stem(year, month, day)
     if day_heavenly_stem == '甲': # means daymaster is yang wood
         if hour_earthly_branch == '子': # Rat hour
